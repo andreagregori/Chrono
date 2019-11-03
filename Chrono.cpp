@@ -2,19 +2,59 @@
 //
 
 #include <iostream>
+#include "Chrono.h"
+
+namespace Chrono {
+
+	Date::Date(int d, Mese mm, int y)
+	{
+		if (!= isData(d, mm, y))
+			throw Invalid{};
+		else
+		{
+			g = d;
+			m = mm;
+			a = y;
+		}
+
+	}
+
+	void Date::addGiorno(int n)
+	{
+
+	}
+
+	void Date::addMese(int m)
+	{
+
+	}
+
+
+
+	bool isData(int g, Mese m, int a)
+	{
+
+		if (m == (Mese::gen || Mese::mar || Mese::mag || Mese::lug || Mese::ago || Mese::ott || Mese::dic) && g >= 1 && g <= 31)
+			return true;
+		else if (m == (Mese::apr || Mese::giu || Mese::set || Mese::nov) && g >= 1 && g <= 30)
+			return true;
+		else if (m == Mese::feb && g >= 1 && g <= 29 && isAnnoBisestile())
+			return true;
+		else if (m == Mese::feb && g >= 1 && g <= 28 && isAnnoBisestile())
+			return true;
+		else
+			return false;
+	}
+
+}
+
+int main() {
+
+	std::cout << "CIao";
+	return 0;
+}
 
 int main()
 {
     std::cout << "Hello World!\n";
 }
-
-// Per eseguire il programma: CTRL+F5 oppure Debug > Avvia senza eseguire debug
-// Per eseguire il debug del programma: F5 oppure Debug > Avvia debug
-
-// Suggerimenti per iniziare: 
-//   1. Usare la finestra Esplora soluzioni per aggiungere/gestire i file
-//   2. Usare la finestra Team Explorer per connettersi al controllo del codice sorgente
-//   3. Usare la finestra di output per visualizzare l'output di compilazione e altri messaggi
-//   4. Usare la finestra Elenco errori per visualizzare gli errori
-//   5. Passare a Progetto > Aggiungi nuovo elemento per creare nuovi file di codice oppure a Progetto > Aggiungi elemento esistente per aggiungere file di codice esistenti al progetto
-//   6. Per aprire di nuovo questo progetto in futuro, passare a File > Apri > Progetto e selezionare il file con estensione sln
