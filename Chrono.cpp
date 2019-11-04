@@ -21,7 +21,21 @@ namespace Chrono {
 
 	void Date::addGiorno(int n)
 	{
-
+		if (isData(g + n, m, a))
+			g = g + n;
+		else
+		{
+			for (int i = 0; i < n; i++)
+			{
+				if (isData(g + 1, m, a))
+					g = g + 1;
+				else if
+					{
+						m=
+					}
+					
+			}
+		}
 	}
 
 	void Date::addMese(int m)
@@ -29,29 +43,32 @@ namespace Chrono {
 
 	}
 
-
-
-	bool isData(int g, Mese m, int a)
+	bool isAnnoBisestile(int y)
 	{
-
-		if (m == (Mese::gen || Mese::mar || Mese::mag || Mese::lug || Mese::ago || Mese::ott || Mese::dic) && g >= 1 && g <= 31)
+		if (y % 400 == 0)
 			return true;
-		else if (m == (Mese::apr || Mese::giu || Mese::set || Mese::nov) && g >= 1 && g <= 30)
-			return true;
-		else if (m == Mese::feb && g >= 1 && g <= 29 && isAnnoBisestile())
-			return true;
-		else if (m == Mese::feb && g >= 1 && g <= 28 && isAnnoBisestile())
+		else if (y % 4 == 0 && y % 100 != 0)
 			return true;
 		else
 			return false;
 	}
 
-}
 
-int main() {
+	bool isData(int g, Mese m, int a)
+	{
 
-	std::cout << "CIao";
-	return 0;
+		if (m ==Mese::gen || m == Mese::mar || m == ::mag || m == Mese::lug || m == Mese::ago || m == Mese::ott || m == Mese::dic) && g >= 1 && g <= 31)
+			return true;
+		else if (m ==Mese::apr || m == Mese::giu || m == Mese::set || m == Mese::nov) && g >= 1 && g <= 30)
+			return true;
+		else if (m == Mese::feb && g >= 1 && g <= 29 && isAnnoBisestile())
+			return true;
+		else if (m == Mese::feb && g >= 1 && g <= 28 && !isAnnoBisestile())
+			return true;
+		else
+			return false;
+	}
+
 }
 
 int main()
