@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <ostream>
+#include <istream>
 #include "Chrono.h"
 
 namespace Chrono {
@@ -56,10 +58,52 @@ namespace Chrono {
 			{
 				if (isData(g, Mese(int(m) + 1), a))
 					m = Mese(int(m) + 1);
-				else if(isData(g, Mese(int(m) + 1), a))
+				else
+				{
+					m = Mese(1);
+					a = a + 1;
+				}
+					
+
 			}
 		}
 		
+	}
+
+	void Date::addAnno(int n)
+	{
+		if (isData(g, m, a + n))
+			a = a + n;
+		else
+			throw Invalid{};
+	}
+
+	Date Date::operator++(Date& d)				//Post-incremento (d++)
+	{
+		Date d1 = d;
+		d.addGiorno(1);
+		return d;
+	}
+
+	bool operator==(const Date& d1, const Date& d2)
+	{
+		if (d1.getGiorno() == d2.getGiorno() && d1.getMese() == d2.getMese() && d1.getAnno() == d2.getAnno())
+			return true;
+		else
+			return false;
+	}
+
+	bool operator!=(const Date& d1, const Date& d2)
+	{
+		if (d1.getGiorno() == d2.getGiorno() && d1.getMese() == d2.getMese() && d1.getAnno() == d2.getAnno())
+			return false;
+		else
+			return true;
+	}
+
+	ostream& operator<<(ostream& os, Date& d)
+	{
+		Chrono::prova
 	}
 
 	bool isAnnoBisestile(int y)
@@ -75,7 +119,6 @@ namespace Chrono {
 
 	bool isData(int g, Mese m, int a)
 	{
-
 		if ((m == Mese::gen || m == Mese::mar || m == Mese::mag || m == Mese::lug || m == Mese::ago || m == Mese::ott || m == Mese::dic) && g >= 1 && g <= 31)
 			return true;
 		else if ((m ==Mese::apr || m == Mese::giu || m == Mese::set || m == Mese::nov) && g >= 1 && g <= 30)
@@ -93,4 +136,5 @@ namespace Chrono {
 int main()
 {
     std::cout << "Hello World!\n";
+	std::cout << 
 }

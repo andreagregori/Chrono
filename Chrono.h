@@ -11,11 +11,16 @@ La classe deve avere:
 - ulteriori helper function a vostra discrezione.
 Il codice deve essere correttamente suddiviso tra un file header e un file cpp. Consigliato l'uso di un namespace.
 */
+#include <vector>
 
 namespace Chrono {
+	int prova;
+	
 	enum class Mese {
 		gen = 1, feb, mar, apr, mag, giu, lug, ago, set, ott, nov, dic
 	};
+
+	vector<string> mesi = { "Gennaio", "Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre" };
 
 
 	class Date
@@ -25,13 +30,15 @@ namespace Chrono {
 		Date();
 		Date(int g, Mese m, int a);
 
-		int giorno() { return g; }
-		Mese mese() { return m; }
-		int anno() { return a; }
+		int getGiorno() { return g; }
+		Mese getMmese() { return m; }
+		int getAnno() { return a; }
 
-		void addGiorno(int n);
+		void addGiorno(int);
 		void addMese(int);
 		void addAnno(int);
+
+		Date operator++(Date&);
 
 	private:
 		int g;
@@ -43,6 +50,10 @@ namespace Chrono {
 	bool isAnnoBisestile(int);
 
 	//overload degli operatori
+	bool operator==(const Date&, const Date&);
+	bool operator!=(const Date&, const Date&);
+	ostream& operator<<(ostream&, const Date&);
+	istream& operator>>(istream&, Date&);
 
 
 
